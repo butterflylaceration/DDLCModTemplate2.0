@@ -1,73 +1,73 @@
 ## script.rpy
 
-# This is the main script that Ren'Py calls upon to start
-# your mod's story! 
+# Este es el script principal que Ren'Py llama al iniciar
+# la historia de tu mod! 
 
 label start:
 
-    # This label configures the anticheat number for the game after Act 1.
-    # It is recommended to leave this as-is and use the following in your script:
+    # Esta rama configura el número anti-trampa para el juego despues del Acto 1.
+    # Es recomendable dejar esto como está y utilizar lo siguiente para tu script:
     #   $ persistent.anticheat = renpy.random.randint(X, Y) 
-    #   X - The minimum number | Y - The maximum number
+    #   X - El número mínimo | Y - El número máximo
     $ anticheat = persistent.anticheat
 
-    # This variable sets the chapter number to 0 to use in the mod.
+    # Esta variable cambia el número de capítulo a 0 para usarlo en el mod.
     $ chapter = 0
 
-    # This variable controls whether the player can dismiss a pause in-game.
+    # Esta variable controla cuando el jugador puede pausar mientras juega.
     $ _dismiss_pause = config.developer
 
-    ## Names of the Characters
-    # These variables set up the names of the characters in the game.
-    # To add a character, use the following example below: 
+    ## Nombres de los personajes
+    # Estas variables establecen los nombres de los personajes en el juego.
+    # Para añadir un personaje, utiliza el siguiente ejempo a continuación: 
     #   $ mi_name = "Mike". 
-    # Don't forget to add the character to 'definitions.rpy'!
+    # No se te olvide añadir el personaje a 'definitions.rpy'!
     $ s_name = "???"
     $ m_name = "Girl 3"
     $ n_name = "Girl 2"
     $ y_name = "Girl 1"
 
-    # This variable controls whether the quick menu in the textbox is enabled.
+    # Esta variable controla cuando el menú rapido en la caja de texto esta activado.
     $ quick_menu = True
 
-    # This variable c ontrols whether we want normal or glitched dialogue
+    # Esta variable controla cuando queramos dialogo normal o dialogo con glitches.
     # For glitched dialogue, use 'style.edited'.
     $ style.say_dialogue = style.normal
 
-    # This variable controls whether Sayori is dead. It is recommended to leave
-    # this as-is.
+    # Esta variable controla cuando Sayori está muerta. Es recomendable dejarlo
+    # como está.
     $ in_sayori_kill = None
     
-    # These variables controls whether the player can skip dialogue or transitions.
+    # Esta variable controla cuando el jugador puede saltarse dialogo o transiciones.
     $ allow_skipping = True
     $ config.allow_skipping = True
 
-    ## The Main Part of the Script
-    # This is where your script code is called!
-    # 'persistent.playthrough' controls the playthrough number the player is on i.e (Act 1, 2, 3, 4)
+    ## La parte principal del código
+    # Aqui es donde el código de tu script es llamado!
+    # 'persistent.playthrough' controla el número de acto en el que el jugador está, ejemplo:(Acto 1, 2, 3, 4)
     if persistent.playthrough == 0:
 
-        # This variable sets the chapter number to X depending on the chapter
-        # your player is experiencing ATM.
+        # Esta variable establece el numero de capitulo a X dependiendo del capitulo
+        # que tu jugador está viviendo al momento.
         $ chapter = 0
 
-        # This call statement calls your script label to be played.
+        # Esta sentencia llama a la rama de tu script para ser reproducida.
         call ch0_main
         
-        # This call statement calls the poem mini-game to be played.
+        # Esta sentencia llama al minijuego del poema para ser reproducido.
         call poem
 
-        ## Day 1
+        ## Día 1
         $ chapter = 1
         call ch1_main
 
-        # This call statement calls the poem sharing minigame to be played.
+        # Esta sentencia llama al minijuego de compartir poemas para ser reproducido.
         call poemresponse_start
         call ch1_end
 
         call poem
 
-        ## Day 2
+        ## Día 2
         $ chapter = 2
         call ch2_main
         call poemresponse_start
@@ -75,13 +75,13 @@ label start:
 
         call poem
 
-        ## Day 3
+        ## Día 3
         $ chapter = 3
         call ch3_main
         call poemresponse_start
         call ch3_end
 
-        ## Day 4
+        ## Día 4
         $ chapter = 4
         call ch4_main
 
